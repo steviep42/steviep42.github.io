@@ -1,0 +1,92 @@
+---
+title: "Exercise"
+author: "Steve Pittard"
+date: "January 27, 2016"
+output: pdf_document
+---
+
+## Computing with Loops
+
+Create a for loop that, given a numeric vector, prints out one number per line, with its square
+and cube alongside
+
+```{r}
+set.seed(123)
+xvec <- rnorm(10)
+```
+
+So some sample output might look like:
+
+```{r eval=FALSE}
+-0.5604756 0.314133 -0.1760639
+-0.2301775 0.05298168 -0.01219519
+1.558708 2.429572 3.786993
+0.07050839 0.004971433 0.0003505278
+0.1292877 0.01671532 0.002161086
+1.715065 2.941448 5.044774
+0.4609162 0.2124437 0.09791877
+-1.265061 1.60038 -2.024579
+-0.6868529 0.4717668 -0.3240344
+-0.445662 0.1986146 -0.08851497
+```
+
+Use a while loop to accomplish the same thing
+
+## Comparing Vectors
+
+As mentioned in class we usually use for loops that involve use of if statements to make some
+decision as we work through a vector or a matrix. For example consider two vectors. Both of the them will contain the same number of elements but their respective values will be different.
+
+```{r}
+set.seed(123)
+vec1 <- rnorm(20)
+vec1
+
+set.seed(147)
+vec2 <- rnorm(20)
+vec2
+
+# This is easy if we use some of the things we have learned
+
+vec3 <- as.numeric(vec1 >= vec2)
+```
+
+
+We could write some code involving a for loop and some if statements to create a new vector called say vec3 whose elements contain a 1 or a 0 depending on whether a given element in vec1 is greater or equal to the comparable element in vec2. Implement this technique using a for loop
+ 
+
+## Comparing Matrices
+
+Let's extend these ideas by doing something similar two matrices. We setup an empty matrix called mat3 to the hold the results of the following comparisons. For each element in mat1 we compare it to the same element in mat2. If the element value from mat1 is >= the one on mat2 then we put a 1 in the
+same element of mat3. 
+
+```{r}
+
+set.seed(123)
+mat1 <- matrix(rnorm(16),4,4)
+
+set.seed(321)
+mat2 <- matrix(rnorm(16),4,4)
+
+```
+
+Now, something like this would be easy using some of the techniques we've already learned. 
+
+```{r}
+mat3 <- matrix(as.numeric(mat1 >= mat2),4,4)
+mat3
+
+```
+
+But write for loop structure that accomplishes the same thing. You will need two for loops - one for the rows and one for the columns.
+
+```{r eval=FALSE}
+for (1 to the number of rows in mat1)         
+  for (1 to the number of columns in mat1)    
+     if (mat1 element >= mat2 element)
+         set mat3 element to 1
+         else set it to 0
+   }
+}
+```
+
