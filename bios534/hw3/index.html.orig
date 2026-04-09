@@ -2244,7 +2244,7 @@ vertical-align: -.125em;
 </header>
 
 
-<p>Last Updated 04/09/26 Update to Question 6.3, Improved formatting in Q2 <br> Initial Release 04/07/26</p>
+<p>Initial Release 04/07/26</p>
 <p><strong>30 Points (see individual sections for specific point values)</strong></p>
 <ul>
 <li>Due by <strong>11:59 PM (Canvas Clock Time)</strong> on <strong>April 20, 2026</strong></li>
@@ -2261,7 +2261,7 @@ vertical-align: -.125em;
 <li>Your Jupyter Notebook (.ipynb) containing all code and results</li>
 <li>An HTML export of the notebook (see below on how to create)</li>
 </ol></li>
-<li><p>For questions requiring comments/discussion, type your responses directly into a Markdown cell.</p></li>
+<li><p>For questions in Section 1, type your responses directly into a Markdown cell.</p></li>
 <li><p>Clearly label each response with the corresponding question number (for example, “Question 1.1”) before writing your answer.</p></li>
 </ul>
 </section>
@@ -2290,7 +2290,7 @@ vertical-align: -.125em;
 <p>This assignment uses a biomarker dataset containing subjects labeled as <strong>Control</strong> or <strong>Impaired</strong>, with the goal of predicting diagnosis using machine learning classification methods in scikit-learn. The dataset consists of numerical biomarker measurements collected across a range of physiological systems, including markers associated with inflammation, vascular signaling, metabolism, and neurodegeneration.</p>
 <p>Several predictors are of particular interest in Alzheimer’s disease research, including <strong>tau</strong>, <strong>p_tau</strong>, and <strong>Ab_42</strong>, which are widely studied because of their relationship to neuronal injury, tau pathology, and amyloid accumulation. Other biomarkers in the dataset may reflect inflammatory or systemic biological processes that also contribute to disease-related variation.</p>
 <p>Because the number of <strong>Control</strong> subjects exceeds the number of <strong>Impaired</strong> subjects, the dataset is moderately imbalanced. As a result, a classification model may achieve reasonable overall accuracy while still performing poorly when identifying the minority class. For that reason, model evaluation should include not only accuracy, but also sensitivity, specificity, and precision so that minority-class performance is interpreted carefully. Here is the data</p>
-<div id="92577f68-38bd-404c-943f-70db8d689d75" class="cell" data-execution_count="3">
+<div id="92577f68-38bd-404c-943f-70db8d689d75" class="cell" data-execution_count="87">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">&quot;https://raw.githubusercontent.com/steviep42/bios_534/refs/heads/main/data/alz_selected_20_features.csv&quot;</span></span>
@@ -2494,7 +2494,7 @@ Name: count, dtype: int64</code></pre>
 <p>Check the Classification notebook and the Seaborn page for the Heatmap function for information. It’s also easy to filter on values &gt; than absolute value of <strong>0.65</strong>.</p>
 <p><strong>1.2)</strong> (2.5 pts) Generate a heatmap of your correlation matrix from 1.1. Identify any biomarker pairs that appear strongly correlated and comment on why correlated predictors may matter in later model interpretation. Your correlation matrix graphic need not match the following output exactly although the computed correlations should match.</p>
 <p>Consult the course notebooks on how to construct the correlation matrix and associated heatmap.</p>
-<div id="47fe0ef5-97de-4c9d-8002-90353b3f2bbd" class="cell" data-execution_count="4">
+<div id="47fe0ef5-97de-4c9d-8002-90353b3f2bbd" class="cell" data-execution_count="109">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -2507,7 +2507,7 @@ Name: count, dtype: int64</code></pre>
 <section id="q2---logistic-regression-using-the-full-predictor-set" class="level2">
 <h2 class="anchored" data-anchor-id="q2---logistic-regression-using-the-full-predictor-set">Q2 - Logistic Regression Using the Full Predictor Set</h2>
 <p><strong>2.1)</strong> (0.5 points) Convert diagnosis so that Control maps to 0 and Impaired maps to 1</p>
-<p><strong>2.2)</strong> (0.5 points) Split the data into training and testing sets using an 80/20 split. Use <code>random_state=42</code> and use <code>stratify=y</code>.</p>
+<p><strong>2.2)</strong> (0.5 points) Split the data into training and testing sets using an 80/20 split - 2.2.1 Use <code>randmod_state=42</code>. - 2.2.2 Use <code>stratify=y</code>. <br></p>
 <p><strong>2.3)</strong> (1 point) Fit a logistic regression model using a pipeline. Use <code>make_pipeline(StandardScaler(), LogisticRegression(max_iter=5000))</code> with the full biomarker dataset, treating <code>diagnosis</code> as the response variable and all remaining columns as predictors.</p>
 <p><strong>2.4)</strong> (1 point) After fitting the model, generate predictions on the <strong>test set</strong> and use scikit functions to generate the following.</p>
 <ul>
@@ -2518,7 +2518,7 @@ Name: count, dtype: int64</code></pre>
 <li>2.4.5 precision</li>
 </ul>
 <p><strong>2.5)</strong> (2 points) Comment on whether accuracy alone adequately describes model performance. Do <strong>NOT</strong> compute these metrics by hand - use scikit functions only.</p>
-<div id="5f7327e4-22fb-4b41-8938-227e267b5ffa" class="cell" data-execution_count="5">
+<div id="5f7327e4-22fb-4b41-8938-227e267b5ffa" class="cell" data-execution_count="110">
 <div class="cell-output cell-output-stdout">
 <pre><code>Confusion Matrix:
 [[46  3]
@@ -2535,7 +2535,7 @@ Precision: 0.812</code></pre>
 <h2 class="anchored" data-anchor-id="q3---balanced-logistic-regression">Q3 - Balanced Logistic Regression</h2>
 <p><strong>3.1)</strong> (2.5 points) Refit the logistic regression estimator using the same pipeline as in Question #2 except implements a <code>LogisticRegression(max_iter=5000, class_weight=&#39;balanced&#39;)</code> estimator.</p>
 <p><strong>3.2)</strong> (2.5 points) Compute the same evaluation metrics as before and compare this Logistic Regression Balanced model to the original Logistic Regression model in Question 2. Explain why class weighting might change model behavior in an imbalanced dataset.</p>
-<div id="f5eee333-58d8-4079-b6cf-84a26c98709c" class="cell" data-execution_count="6">
+<div id="f5eee333-58d8-4079-b6cf-84a26c98709c" class="cell" data-execution_count="111">
 <div class="cell-output cell-output-stdout">
 <pre><code>Balanced Logistic Regression
 Confusion Matrix:
@@ -2555,7 +2555,7 @@ Precision: 0.615</code></pre>
 <p><strong>4.2)</strong> (1 point) Using the absolute values, identify the three predictors with the largest magnitudes and the three with the smallest magnitudes.</p>
 <p><strong>4.3)</strong> (1 point) Explain how coefficient magnitude can be used to guide feature selection when building a reduced model.</p>
 <p><strong>4.4)</strong> (2 points) Comment on why biologically related predictors such as <strong>tau</strong> and <strong>p_tau</strong> may not necessarily have coefficients with similar values or signs when included in the same model.</p>
-<div id="bc0cd083-836b-4cbc-b150-a1bb68f076c3" class="cell" data-execution_count="7">
+<div id="bc0cd083-836b-4cbc-b150-a1bb68f076c3" class="cell" data-execution_count="112">
 <div class="cell-output cell-output-stdout">
 <pre><code>All coefficients (sorted):
 TNF_RII                            -1.158362
@@ -2598,9 +2598,9 @@ dtype: float64</code></pre>
 <h2 class="anchored" data-anchor-id="q5---feature-selection-and-logistic-regression">Q5 - Feature Selection and Logistic Regression</h2>
 <p><strong>5.1)</strong> (1 points) Use <code>SelectKBest(score_func=f_classif, k=&quot;all&quot;)</code> to score all predictors. Make sure to use the <strong>training</strong> data from Question 2.</p>
 <p><strong>5.2)</strong> (0.5 point) Print the predictors ranked from strongest to weakest based on their scores, and identify the top three predictors.</p>
-<p><strong>5.3)</strong> (1.5 points) Fit a <strong>balanced logistic regression</strong> model using the pipeline from Question 3. Use only the top 3 predictors identified in <strong>5.2</strong>. Generate predictions on the test set and compute the confusion matrix, accuracy, sensitivity, specificity, and precision.</p>
+<p><strong>5.3)</strong> (1.5 points) Fit a <strong>balanced logistic regression</strong> model using the pipeline from Question 3. Use only the top 3 predictors identified in 5.2. Generate predictions on the test set and compute the confusion matrix, accuracy, sensitivity, specificity, and precision.</p>
 <p><strong>5.4)</strong> (2 points) Compare these results to the earlier balanced logistic regression model using all predictors (Question 3). What does this suggest about whether a smaller subset of predictors can preserve or improve classification performance?</p>
-<div id="b01310fb-e640-455f-b692-bb009b403afe" class="cell" data-execution_count="8">
+<div id="b01310fb-e640-455f-b692-bb009b403afe" class="cell" data-execution_count="113">
 <div class="cell-output cell-output-stdout">
 <pre><code>Predictors ranked by f_classif score:
 tau                                 59.841648
@@ -2646,10 +2646,10 @@ Precision: 0.609</code></pre>
 <h2 class="anchored" data-anchor-id="q6---random-forest-and-variable-importance">Q6 - Random Forest and Variable Importance</h2>
 <p><strong>6.1)</strong> (1 points) Using the Train / Test split from Question 2, fit a <code>RandomForestClassifier(random_state=42, class_weight=&quot;balanced&quot;)</code> estimator using the full biomarker set and extract variable importance values.</p>
 <p><strong>6.2)</strong> (0.5 points) Print the predictors from most important to least important (in terms of score magnitude).</p>
-<p><strong>6.3)</strong> (0.5 points) Fit a second <code>RandomForestClassifier(random_state=42, class_weight=&quot;balanced&quot;)</code> estimator using the top <strong>12</strong> variables.</p>
+<p><strong>6.3)</strong> (0.5 points) Fit a second <code>RandomForestClassifier(random_state=42, class_weight=&quot;balanced&quot;)</code> estimator using the top <strong>10</strong> variables.</p>
 <p><strong>6.4)</strong> (1 point) For the <strong>test data</strong>, make predictions and compute the confusion matrix, accuracy, sensitivity, specificity, and precision, and compare these results to the <strong>balanced logistic regression model test results</strong> in Question 3.</p>
-<p><strong>6.5)</strong> (2 points) Compare the performance to the results of Question 5.3</p>
-<div id="241882de-d916-4c03-a7dc-5560ad00aac9" class="cell" data-execution_count="17">
+<p><strong>6.5)</strong> (2 points) Compare the performance to the results of Question 5</p>
+<div id="241882de-d916-4c03-a7dc-5560ad00aac9" class="cell" data-execution_count="104">
 <div class="cell-output cell-output-stdout">
 <pre><code>Random Forest variable importance:
 Ab_42                               0.155699
@@ -2674,7 +2674,7 @@ MIF                                 0.031076
 Thymus_Expressed_Chemokine_TECK     0.028280
 dtype: float64
 
-Top 12 predictors:
+Top 10 predictors:
 Ab_42                     0.155699
 tau                       0.132806
 MMP10                     0.055509
@@ -2685,18 +2685,16 @@ MMP7                      0.042068
 Eotaxin_3                 0.041090
 GRO_alpha                 0.039931
 FAS                       0.039372
-Fibrinogen                0.038447
-age                       0.037481
 dtype: float64
 
 Confusion Matrix:
 [[44  5]
- [ 7 11]]
+ [ 5 13]]
 
-Accuracy: 0.821
-Sensitivity: 0.611
+Accuracy: 0.851
+Sensitivity: 0.722
 Specificity: 0.898
-Precision: 0.688</code></pre>
+Precision: 0.722</code></pre>
 </div>
 </div>
 </section>
